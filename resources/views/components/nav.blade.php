@@ -2,7 +2,9 @@
     <ul>
         <li><a href="/">Início</a></li>
         <li><a href="/viaturas">Viaturas</a></li>
-        <li><a href="contactos">Contactos</a></li>
+        @foreach ($pages as $page)
+        <li><a href="/pagina/{{ $page['id'] }}/{{ Str::slug($page['title'], '-') }}">{{ $page['title'] }}</a></li>
+        @endforeach
         <li><a href="https://mundotvde.pt" target="_new">Mundo TVDE</a></li>
     </ul>
 </nav><!-- .navbar -->

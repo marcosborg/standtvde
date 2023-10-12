@@ -47,7 +47,7 @@
                 <img src="/website/assets/img/logo.svg" width="200">
             </a>
 
-            <x-nav />
+            <x-nav :pages=$pages />
 
         </div>
 

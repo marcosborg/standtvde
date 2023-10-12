@@ -11,38 +11,28 @@ class WebsiteController extends Controller
     public function index()
     {
 
-        $response = Http::get('https://mundotvde.pt/api/stand-cars');
+        $cars = Http::get('https://mundotvde.pt/api/stand-cars')->json();
+        $pages = Http::get('https://mundotvde.pt/api/pages')->json();
 
-        if ($response->ok()) {
-            $cars = $response->json();
-            return view('home', compact('cars'));
-        } else {
-            return response()->json(['erro' => 'Não foi possível obter os carros do stand.'], $response->status());
-        }
+        return view('home', compact('cars', 'pages'));
 
     }
 
     public function car($id, $slug)
     {
 
-        $response1 = Http::get('https://mundotvde.pt/api/stand-cars');
-        $response2 = Http::get('https://mundotvde.pt/api/stand-car/' . $id);
+        $cars = Http::get('https://mundotvde.pt/api/stand-cars')->json();
+        $car = Http::get('https://mundotvde.pt/api/stand-car/' . $id)->json();
+        $pages = Http::get('https://mundotvde.pt/api/pages')->json();
 
-        if ($response1->ok() && $response2->ok()) {
-            $cars = $response1->json();
-            $car = $response2->json();
-            return view('car', compact('cars', 'car'));
-        } else {
-            return response()->json(['erro' => 'Não foi possível obter os carros do stand.'], $response1->status());
-        }
+        return view('car', compact('cars', 'car', 'pages'));
     }
 
     public function cars()
     {
-        $response = Http::get('https://mundotvde.pt/api/stand-cars');
+        $cars = Http::get('https://mundotvde.pt/api/stand-cars')->json();
+        $pages = Http::get('https://mundotvde.pt/api/pages')->json();
         $filter_elements = Http::get('https://mundotvde.pt/api/filter-elements');
-
-        //return $filter_elements;
 
         $brands = $filter_elements['brands'];
         $models = $filter_elements['models'];
@@ -51,11 +41,16 @@ class WebsiteController extends Controller
         $kilometers = $filter_elements['kilometers'];
         $prices = $filter_elements['prices'];
 
-        if ($response->ok()) {
-            $cars = $response->json();
-            return view('cars', compact('cars', 'brands', 'models', 'fuels', 'origins', 'kilometers', 'prices'));
-        } else {
-            return response()->json(['erro' => 'Não foi possível obter os carros do stand.'], $response->status());
-        }
+        return view('cars', compact('cars', 'pages', 'brands', 'models', 'fuels', 'origins', 'kilometers', 'prices'));
+    }
+
+    public function page($id)
+    {
+
+        $cars = Http::get('https://mundotvde.pt/api/stand-cars')->json();
+        $pages = Http::get('https://mundotvde.pt/api/pages')->json();
+        $page = Http::get('https://mundotvde.pt/api/page/' . $id)->json();
+
+        return view('page', compact('cars', 'pages', 'page'));
     }
 }

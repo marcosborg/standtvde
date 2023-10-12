@@ -34,7 +34,7 @@
             <div class="col-md-6">
                 <h2>{{ $car['brand']['name'] }} {{ $car['car_model']['name'] }}</h2>
                 <h1><small>€</small> {{ number_format($car['price'], 2, '.', ' ') }}</h1>
-                <span class="badge bg-danger">{{ $car['status']['name'] }}</span>
+                <span class="badge bg-{{ $car['status']['id'] == 1 ? 'danger' : 'success' }}">{{ $car['status']['name'] }}</span>
                 <div class="row mt-4">
                     <div class="col">
                         <p><strong>Ano: </strong>{{ $car['year'] }} | {{ $car['month']['name'] }}</p>

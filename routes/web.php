@@ -7,3 +7,5 @@ Route::get('/', [WebsiteController::class, 'index']);
 
 Route::get('/{id}/{slug}', [WebsiteController::class, 'car']);
 Route::get('/viaturas', [WebsiteController::class, 'cars']);
+
+Route::get('/pagina/{id}/{slug}', [WebsiteController::class, 'page']);
