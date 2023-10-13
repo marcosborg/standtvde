@@ -109,11 +109,11 @@
                                 @endforeach
                             </select>
                             <hr>
-                            <label for="kilometers_max" class="form-label">Quilómetros máx. <span id="kilometers_max_val"></span></label>
-                            <input type="range" class="form-range" id="kilometers_max" min="{{ $kilometers['min'] }}" max="{{ $kilometers['max'] }}" value="5000000" onchange="updateKilometersRange()">
+                            <label for="kilometers_max" class="form-label">Quilómetros máx. <span id="kilometers_max_val">250000 Km</span></label>
+                            <input type="range" class="form-range" id="kilometers_max" min="0" max="250000" value="250000" onchange="updateKilometersRange()">
                             <hr>
-                            <label for="prices_max" class="form-label">Preço máx. <span id="prices_max_val"></span></label>
-                            <input type="range" class="form-range" id="prices_max" min="{{ $prices['min'] }}" max="{{ $prices['max'] }}" value="5000000" onchange="updatePricesRange()">
+                            <label for="prices_max" class="form-label">Preço máx. <span id="prices_max_val">50000 €</span></label>
+                            <input type="range" class="form-range" id="prices_max" min="0" max="50000" value="50000" onchange="updatePricesRange()">
                         </div>
                         <div class="card footer">
                             <button class="btn btn-primary">Filtrar</button>

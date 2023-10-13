@@ -7,6 +7,7 @@
                     <a href="/{{ $cars[0]['id'] }}/{{ Str::slug($cars[0]['brand']['name'] . ' ' . $cars[0]['car_model']['name'], '-') }}"><img src="{{ $cars[0]['images'][0]['original_url'] }}" alt="" class="img-fluid"></a>
                     <h4><a href="/{{ $cars[0]['id'] }}/{{ Str::slug($cars[0]['brand']['name'] . ' ' . $cars[0]['car_model']['name'], '-') }}">{{ $cars[0]['brand']['name'] }} {{ $cars[0]['car_model']['name']
                             }}</a></h4>
+                            <h3>{{ number_format($cars[0]['price'], 2, '.', ' ') }} <small>€</small></h3>
                     <p class="mb-4 d-block">
                         <strong>Ano: {{ $cars[0]['year'] }}</strong><br>
                         <strong>Mês: {{ $cars[0]['month']['name'] }}</strong><br>
@@ -18,6 +19,7 @@
                     <a href="/{{ $cars[1]['id'] }}/{{ Str::slug($cars[1]['brand']['name'] . ' ' . $cars[1]['car_model']['name'], '-') }}"><img src="{{ $cars[1]['images'][1]['original_url'] }}" alt="" class="img-fluid"></a>
                     <h4><a href="/{{ $cars[1]['id'] }}/{{ Str::slug($cars[1]['brand']['name'] . ' ' . $cars[1]['car_model']['name'], '-') }}">{{ $cars[1]['brand']['name'] }} {{ $cars[1]['car_model']['name']
                             }}</a></h4>
+                            <h3>{{ number_format($cars[1]['price'], 2, '.', ' ') }} <small>€</small></h3>
                     <p class="mb-4 d-block">
                         <strong>Ano: {{ $cars[1]['year'] }}</strong><br>
                         <strong>Mês: {{ $cars[1]['month']['name'] }}</strong><br>
@@ -40,6 +42,7 @@
                                     class="img-fluid"></a>
                             <h2><a href="/{{ $car['id'] }}/{{ Str::slug($car['brand']['name'] . ' ' . $car['car_model']['name'], '-') }}">{{ $car['brand']['name'] }} {{ $car['car_model']['name']
                                     }}</a></h2>
+                                    <h4>{{ number_format($car['price'], 2, '.', ' ') }} <small>€</small></h4>
                             <p>
                                 <strong>Ano: {{ $car['year'] }}</strong><br>
                                 <strong>Mês: {{ $car['month']['name'] }}</strong><br>
@@ -62,6 +65,7 @@
                                     <a href="/{{ $car['id'] }}/{{ Str::slug($car['brand']['name'] . ' ' . $car['car_model']['name'], '-') }}">
                                         <span class="number">1</span>
                                         <h3>{{ $car['brand']['name'] }} {{ $car['car_model']['name'] }}</h3>
+                                        <h4>{{ number_format($car['price'], 2, '.', ' ') }} <small>€</small></h4>
                                         <span class="author">
                                             <strong>Ano: {{ $car['year'] }}</strong><br>
                                             <strong>Mês: {{ $car['month']['name'] }}</strong><br>

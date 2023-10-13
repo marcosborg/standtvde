@@ -11,6 +11,7 @@
                                 style="background-image: url('{{ $car['images'][0]['original_url'] }}');">
                                 <div class="img-bg-inner">
                                     <h2>{{ $car['brand']['name'] }} {{ $car['car_model']['name'] }}</h2>
+                                    <h1 class="color-white">{{ number_format($car['price'], 2, '.', ' ') }} <small>€</small></h1>
                                     <p>
                                         <strong>Ano: {{ $car['year'] }}</strong><br>
                                         <strong>Mês: {{ $car['month']['name'] }}</strong><br>

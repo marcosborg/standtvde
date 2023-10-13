@@ -13,8 +13,9 @@ class WebsiteController extends Controller
 
         $cars = Http::get('https://mundotvde.pt/api/stand-cars')->json();
         $pages = Http::get('https://mundotvde.pt/api/pages')->json();
+        $pubs = Http::get('https://mundotvde.pt/api/pubs')->json();
 
-        return view('home', compact('cars', 'pages'));
+        return view('home', compact('cars', 'pages', 'pubs'));
 
     }
 
