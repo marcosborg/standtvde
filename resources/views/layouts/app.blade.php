@@ -11,8 +11,7 @@
         name="description">
 
     <!-- Favicons -->
-    <link href="/website/assets/img/favicon.png" rel="icon">
-    <link href="/website/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/website/assets/img/favicon.ico" rel="icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

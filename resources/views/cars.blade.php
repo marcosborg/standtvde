@@ -6,7 +6,7 @@
             <div class="col-md-9" data-aos="fade-up">
                 @foreach ($cars as $car)
                 <div class="card mb-4">
-                    <div class="card-body">
+                    <div class="card-body" style="cursor: pointer;">
                         <div class="row g-0 product"
                             onclick="goStandCar({{ $car['id'] }}, '{{ Str::slug($car['brand']['name'] . ' ' . $car['car_model']['name'], '-') }}')">
                             <div class="col-12 col-md-6 col-lg-4">
@@ -21,7 +21,7 @@
                                                 $car['car_model']['name'] }}</p>
                                         </div>
                                         <div class="col text-end">
-                                            <span class="badge bg-danger">{{ $car['status']['name'] }}</span>
+                                            <span class="badge bg-{{ $car['status']['id'] == 1 ? 'danger' : 'success' }}">{{ $car['status']['name'] }}</span>
                                         </div>
                                     </div>
                                     <h3><small>€</small> {{ number_format($car['price'], 2, '.', ' ') }}</h3>
