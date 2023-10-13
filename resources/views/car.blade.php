@@ -34,7 +34,8 @@
             <div class="col-md-6">
                 <h2>{{ $car['brand']['name'] }} {{ $car['car_model']['name'] }}</h2>
                 <h1><small>€</small> {{ number_format($car['price'], 2, '.', ' ') }}</h1>
-                <span class="badge bg-{{ $car['status']['id'] == 1 ? 'danger' : 'success' }}">{{ $car['status']['name'] }}</span>
+                <span class="badge bg-{{ $car['status']['id'] == 1 ? 'danger' : 'success' }}">{{ $car['status']['name']
+                    }}</span>
                 <div class="row mt-4">
                     <div class="col">
                         <p><strong>Ano: </strong>{{ $car['year'] }} | {{ $car['month']['name'] }}</p>
@@ -67,32 +68,41 @@
                         <h5 class="comment-title">Pedido de contacto</h5>
                     </div>
                     <div class="card-body">
-                        <div class="row mt-4">
-                            <div class="col-lg-6 mb-3">
-                                <label for="name">Nome</label>
-                                <input type="text" class="form-control" id="name" placeholder="Obrigatório">
+                        <form action="/info-request" method="post" id="info_request">
+                            @csrf
+                            <input type="hidden" name="car_id" value="{{ $car['id'] }}">
+                            <div class="row mt-4">
+                                <div class="col-lg-6 mb-3">
+                                    <label for="name">Nome</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Obrigatório">
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="Obrigatório">
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="phone">Contacto</label>
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                        placeholder="Obrigatório">
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="subject">Assunto</label>
+                                    <input type="text" class="form-control" id="subject" name="subject"
+                                        placeholder="Obrigatório">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="message">Mensagem</label>
+                                    <textarea class="form-control" id="message" name="message" placeholder="" cols="30"
+                                        rows="5"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <input type="submit" class="btn btn-primary"
+                                        value="Pedir contacto para esta viatura">
+                                </div>
                             </div>
-                            <div class="col-lg-6 mb-3">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Obrigatório">
-                            </div>
-                            <div class="col-lg-6 mb-3">
-                                <label for="phone">Contacto</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Obrigatório">
-                            </div>
-                            <div class="col-lg-6 mb-3">
-                                <label for="subject">Assunto</label>
-                                <input type="text" class="form-control" id="subject" placeholder="Obrigatório">
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="message">Mensagem</label>
-                                <textarea class="form-control" id="message" placeholder="" cols="30"
-                                    rows="5"></textarea>
-                            </div>
-                            <div class="col-12">
-                                <input type="submit" class="btn btn-primary" value="Pedir contacto para esta viatura">
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div><!-- End Comments Form -->
             </div>
@@ -103,6 +113,10 @@
 
 @section('scripts')
 @parent
+<script src="https://malsup.github.io/jquery.form.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js">
+</script>
 <script>
     var swiper = new Swiper(".mySwiper", {
       loop: true,
@@ -122,6 +136,31 @@
         swiper: swiper,
       },
     });
+    $(()=>{
+        $('#info_request').ajaxForm({
+            beforeSubmit: () => {
+                $.LoadingOverlay('show');
+            },
+            success: (resp) => {
+                $.LoadingOverlay('hide');
+                Swal.fire(
+                    'Obrigado!',
+                    'Vamos contactar rápidamente!',
+                    'success'
+                ).then(() => {
+                    location.reload();
+                });
+            },
+            error: (err) => {
+                $.LoadingOverlay('hide');
+                Swal.fire(
+                    'Validação!',
+                    'Alguns campos são obrigatórios!',
+                    'error'
+                );
+            }
+        });
+    })
 </script>
 @endsection
 

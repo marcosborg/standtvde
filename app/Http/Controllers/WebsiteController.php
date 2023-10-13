@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\RequestNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Notification;
 
 class WebsiteController extends Controller
 {
@@ -53,5 +55,27 @@ class WebsiteController extends Controller
         $page = Http::get('https://mundotvde.pt/api/page/' . $id)->json();
 
         return view('page', compact('cars', 'pages', 'page'));
+    }
+
+    public function infoRequest(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email:rfc,dns',
+            'phone' => 'required',
+            'subject' => 'required'
+        ], [], [
+            'Nome',
+            'Email',
+            'Contacto',
+            'Assunto'
+        ]);
+
+        $car = Http::get('https://mundotvde.pt/api/stand-car/' . $request->car_id)->json();
+
+        Notification::route('mail', 'info@standtvde.pt')
+            ->notify(new RequestNotification($request, $car));
+
     }
 }
