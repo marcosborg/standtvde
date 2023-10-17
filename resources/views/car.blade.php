@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('head')
+<meta property="og:image" content="{{ $car['images'][0]['url'] }}" />
+@endsection
 @section('content')
 <section class="single-post-content">
     <div class="container">
@@ -57,7 +60,7 @@
                         <i class="bi bi-facebook"></i>
                     </a>
                     <a class="btn btn-success"
-                        href="https://api.whatsapp.com/send?text=Titan of Douro Vale dos Mil Branco 2019 Magnum:%20{{ url()->current() }}"
+                        href="https://api.whatsapp.com/send?text={{ $car['brand']['name'] }} {{ $car['car_model']['name'] }}:%20{{ url()->current() }}"
                         target="_blank">
                         <i class="bi bi-whatsapp"></i>
                     </a>
