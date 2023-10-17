@@ -60,7 +60,7 @@
 
     </main><!-- End #main -->
 
-    <x-footer :cars=$cars />
+    <x-footer :cars=$cars :pages=$pages />
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

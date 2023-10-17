@@ -14,12 +14,13 @@
                 <div class="col-6 col-lg-3">
                     <h3 class="footer-heading">Navigation</h3>
                     <ul class="footer-links list-unstyled">
-                        <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-                        <li><a href="index.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
-                        <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
-                        <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Single Post</a></li>
-                        <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-                        <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+                        <li><a href="/"><i class="bi bi-chevron-right"></i> Início</a></li>
+                        <li><a href="/viaturas"><i class="bi bi-chevron-right"></i> Viaturas</a></li>
+                        @foreach ($pages as $page)
+                        <li><a href="/pagina/{{ $page['id'] }}/{{ Str::slug($page['title'], '-') }}"><i class="bi bi-chevron-right"></i> {{ $page['title'] }}</a></li>
+                        @endforeach
+                        <li><a href="https://mundotvde.pt" target="_new"><i class="bi bi-chevron-right"></i> Mundo
+                                TVDE</a></li>
                     </ul>
                 </div>
                 @php
