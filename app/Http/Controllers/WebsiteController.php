@@ -74,6 +74,15 @@ class WebsiteController extends Controller
 
         $car = Http::get('https://mundotvde.pt/api/stand-car/' . $request->car_id)->json();
 
+        Http::post('http://127.0.0.1:8000/api/contact', [
+            'name' => $request->name,
+            'car' => $car['brand']['name'] . ' ' . $car['car_model']['name'],
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message
+        ]);
+
         Notification::route('mail', 'info@standtvde.pt')
             ->notify(new RequestNotification($request, $car));
 
