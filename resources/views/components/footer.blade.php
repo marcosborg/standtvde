@@ -12,7 +12,7 @@
                         colaboradores do Standtvde são a principal riqueza da empresa.</p>
                 </div>
                 <div class="col-6 col-lg-3">
-                    <h3 class="footer-heading">Navigation</h3>
+                    <h3 class="footer-heading">Navegação</h3>
                     <ul class="footer-links list-unstyled">
                         <li><a href="/"><i class="bi bi-chevron-right"></i> Início</a></li>
                         <li><a href="/viaturas"><i class="bi bi-chevron-right"></i> Viaturas</a></li>
